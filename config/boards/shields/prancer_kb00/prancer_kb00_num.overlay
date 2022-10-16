@@ -62,10 +62,10 @@
     };
 };
 
-&spi0 {
+&spi1 {
   compatible = "nordic,nrf-spim";
   status = "okay";
-  mosi-pin = <40>;
+  mosi-pin = <33>;
   // Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
   sck-pin = <30>;
   miso-pin = <31>;
@@ -87,4 +87,12 @@
                           LED_COLOR_ID_RED
                           LED_COLOR_ID_BLUE>;
   };
+};
+
+&i2c0 {
+	lcd: lcd@27 {
+		compatible = "hit,hd44780";
+		label = "HD44780";
+		reg = <0x27>;
+	};
 };
