@@ -20,18 +20,18 @@
         diode-direction = "col2row";
 
         col-gpios
-            = <&gpio1 4  GPIO_ACTIVE_HIGH>
-            , <&gpio1 5  GPIO_ACTIVE_HIGH>
-            , <&gpio1 6  GPIO_ACTIVE_HIGH>
-            , <&gpio1 7  GPIO_ACTIVE_HIGH>
+            = <&gpio1  3  GPIO_ACTIVE_HIGH>
+            , <&gpio0 19  GPIO_ACTIVE_HIGH>
+            , <&gpio0 16  GPIO_ACTIVE_HIGH>
+            , <&gpio0 17  GPIO_ACTIVE_HIGH>
             ;
 
         row-gpios
-            = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio0 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&gpio0 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0  8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&gpio0  1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
 
@@ -65,10 +65,10 @@
 &spi1 {
   compatible = "nordic,nrf-spim";
   status = "okay";
-  mosi-pin = <40>;
+  mosi-pin = <0>;
   // Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
-  sck-pin = <30>;
-  miso-pin = <31>;
+  sck-pin = <23>;
+  miso-pin = <37>;
 
   led_strip: ws2812@0 {
     compatible = "worldsemi,ws2812-spi";
@@ -90,11 +90,11 @@
 };
 
 &i2c0 {
-    /*
+    sda-pin = <4>;
+	scl-pin = <5>;
 	lcd: lcd@27 {
 		compatible = "hit,hd44780";
 		label = "HD44780";
 		reg = <0x27>;
 	};
-    */
 };
