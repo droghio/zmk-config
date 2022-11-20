@@ -9,9 +9,15 @@
 
 / {
     chosen {
+        zmk,battery = &vbatt;
         zmk,kscan = &kscan0;
         zmk,matrix_transform = &default_transform;
         zmk,underglow = &led_strip;
+    };
+
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
+        label = "VBATT";
     };
 
     kscan0: kscan_0 {

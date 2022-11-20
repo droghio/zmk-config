@@ -1,11 +1,27 @@
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+
+    behaviors {
+        // Thanks @joelspadin!
+        ZMK_MACRO(bt_clr,
+            bindings = <&bt BT_CLR>;
+        )
+        bt_clr_tap: bt_clr_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BT_TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&bt_clr>, <&kp>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
             // ┌───┬───┬───┬───┐
             // │NUM│ / │ * │ - │
@@ -19,11 +35,12 @@
             // │ 0     │ . │   │
             // └───────┴───┴───┘
             bindings = <
-                &kp KP_NUM      &kp KP_DIVIDE    &kp KP_MULTIPLY  &kp KP_MINUS
-                &kp KP_NUMBER_7 &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS
-                &kp KP_NUMBER_4 &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp BACKSPACE
-                &kp KP_NUMBER_1 &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER
-                &kp KP_NUMBER_0 &kp KP_DOT
+                &bt_clr_tap 0 KP_NUM 
+                &kp KP_DIVIDE          &kp KP_MULTIPLY  &kp KP_MINUS
+                &kp KP_NUMBER_7        &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS
+                &kp KP_NUMBER_4        &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp BACKSPACE
+                &kp KP_NUMBER_1        &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER
+                &kp KP_NUMBER_0        &kp KP_DOT
             >;
         };
     };
