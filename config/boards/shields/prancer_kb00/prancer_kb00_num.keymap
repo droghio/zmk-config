@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rpn.h>
 
 / {
 
@@ -17,6 +18,11 @@
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             bindings = <&bt_clr>, <&kp>;
+        };
+        rpn: rpn_calc {
+            compatible = "zmk,behavior-rpn-calculator";
+            label = "RPN_CALC";
+            #binding-cells = <1>;
         };
     };
 
@@ -35,12 +41,11 @@
             // │ 0     │ . │   │
             // └───────┴───┴───┘
             bindings = <
-                &bt_clr_tap 0 KP_NUM 
-                &kp KP_DIVIDE          &kp KP_MULTIPLY  &kp KP_MINUS
-                &kp KP_NUMBER_7        &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS
-                &kp KP_NUMBER_4        &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp BACKSPACE
-                &kp KP_NUMBER_1        &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_ENTER
-                &kp KP_NUMBER_0        &kp KP_DOT
+                &bt_clr_tap 0 KP_NUM   &rpn RPN_DIVIDE   &rpn RPN_MULTIPLY  &rpn RPN_SUBTRACT
+                &rpn KP_NUMBER_7       &rpn KP_NUMBER_8  &rpn KP_NUMBER_9   &rpn RPN_ADD
+                &rpn KP_NUMBER_4       &rpn KP_NUMBER_5  &rpn KP_NUMBER_6   &rpn BACKSPACE
+                &rpn KP_NUMBER_1       &rpn KP_NUMBER_2  &rpn KP_NUMBER_3   &rpn KP_ENTER
+                &rpn KP_NUMBER_0       &rpn KP_DOT
             >;
         };
     };
